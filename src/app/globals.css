@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #171717;
+  --foreground: beige;
+  --color-base: #1d1c1a;
+  ---white: #ffffff;
 }
 
 @theme inline {
@@ -24,3 +26,32 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.page-wrapper {
+  position: relative;
+  background-color: var(--color-base);
+  color: var(--white);
+}
+
+.page-wrapper.home-page {
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), linear-gradient(34deg, rgb(255, 237, 77), rgb(251, 108, 104) 54%, rgb(24, 191, 255));
+}
+
+.section {
+  position: relative;
+  padding-top: 4rem;
+  padding-bottom: 8rem;
+}
+
+.container {
+  display: block;
+  width: 90%;
+  max-width: 90rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+

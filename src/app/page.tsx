@@ -1,7 +1,7 @@
 "use client";
 
 import { Section, Block } from "../../devlink/_Builtin";
-import { Screen } from "../../devlink";
+import { Screen, ChatMessage, BasicP, UserInputGroup } from "../../devlink";
 
 export default function Home() {
   return (
@@ -9,25 +9,26 @@ export default function Home() {
       tag="section"
       className="page-wrapper home-page"
     >
-      <Block tag="div" className="container">
-        <Block
-          tag="div"
-          className="hero-split"
-          style={{
-            textAlign: "center",
-            maxWidth: "600px",
-            margin: "0 auto",
-          }}
-        >
+      <Block tag="div" className="section">
+        <Block tag="div" className="container">
+       
           <Screen
             screenPrint={
               <Block tag="div">
                 <h1 style={{ color: "var(--primary-ba25d908)", fontSize: "2rem" }}>
                   Welcome to WebflowGPT
                 </h1>
-                <p style={{ color: "var(--primary-ba25d908)", marginTop: "1rem" }}>
-                  Your AI-powered Webflow assistant
-                </p>
+                <BasicP text="Just some chat thing." />
+                <Block tag="div" className="chat-container">
+                  <ChatMessage
+                    messageBody="Hello! I'm WebflowGPT, your friendly AI assistant. How can I help you today?"
+                    gptMessage={true}
+                    userMessage={false}
+                  />
+                </Block>
+                <Block tag="div" className="chat-input-container">
+                  <UserInputGroup />
+                </Block>
               </Block>
             }
             powerOn={true}
