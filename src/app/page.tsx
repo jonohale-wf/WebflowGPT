@@ -1,17 +1,13 @@
 "use client";
 
 import { Section, Block, Link } from "../../devlink/_Builtin";
+import { Screen } from "../../devlink";
 
 export default function Home() {
   return (
     <Section
       tag="section"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      className="page-wrapper home-page"
     >
       <Block tag="div" className="container">
         <Block
@@ -23,33 +19,19 @@ export default function Home() {
             margin: "0 auto",
           }}
         >
-          <h1
-            className="margin-bottom-24px"
-            style={{
-              fontSize: "2.5rem",
-              fontWeight: 700,
-              background: "linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Welcome to Webflow Cloud
-          </h1>
-          <Block tag="p" className="margin-bottom-24px">
-            This is a simple test using Basic components with enhanced styling.
-          </Block>
-          <div>
-            <Link
-              button={true}
-              options={{
-                href: "#",
-              }}
-              className="button-primary"
-            >
-              Get Started
-            </Link>
-          </div>
+          <Screen
+            screenPrint={
+              <Block tag="div">
+                <h1 style={{ color: "var(--primary-ba25d908)", fontSize: "2rem" }}>
+                  Welcome to WebflowGPT
+                </h1>
+                <p style={{ color: "var(--primary-ba25d908)", marginTop: "1rem" }}>
+                  Your AI-powered Webflow assistant
+                </p>
+              </Block>
+            }
+            powerOn={true}
+          />
         </Block>
       </Block>
     </Section>
