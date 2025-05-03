@@ -115,7 +115,7 @@ export default function Home() {
   const [isEnded, setIsEnded] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const beepBoopInterval = useRef<NodeJS.Timeout>();
+  const beepBoopInterval = useRef<NodeJS.Timeout | null>(null);
 
   // Initialize with a random welcome message
   useEffect(() => {
