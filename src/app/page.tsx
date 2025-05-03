@@ -58,6 +58,7 @@ function SimpleInput({ onSubmit, isEnded, onRestart }: {
       <div className={_utils.cx(_styles, "user-input-group")}>
         <button 
           onClick={onRestart}
+          className="restart-button"
           style={{
             width: '100%',
             padding: '20px',
@@ -66,11 +67,18 @@ function SimpleInput({ onSubmit, isEnded, onRestart }: {
             border: '1px solid var(--primary-ba25d908)',
             color: 'var(--primary-ba25d908)',
             cursor: 'pointer',
-            borderRadius: '4px'
+            borderRadius: '4px',
+            transition: 'all 0.3s ease'
           }}
         >
           Start New Conversation
         </button>
+        <style jsx>{`
+          .restart-button:hover {
+            box-shadow: inset 0 0 20px var(--primary-ba25d908);
+            background-color: rgba(var(--primary-ba25d908), 0.05);
+          }
+        `}</style>
       </div>
     );
   }
@@ -114,6 +122,7 @@ export default function Home() {
   const [responseCount, setResponseCount] = useState(0);
   const [isEnded, setIsEnded] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [usedResponses, setUsedResponses] = useState<Set<number>>(new Set());
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const beepBoopInterval = useRef<NodeJS.Timeout | null>(null);
 
@@ -124,8 +133,10 @@ export default function Home() {
       body: welcomeMessage,
       isGPT: true,
       isUser: false,
-      displayText: welcomeMessage
+      isTyping: true,
+      displayText: ''
     }]);
+    typeMessage(welcomeMessage, 0);
   }, []);
 
   // Scroll to bottom when messages change or typing state changes
@@ -185,6 +196,22 @@ export default function Home() {
     }, typingSpeed);
   };
 
+  const getRandomUnusedResponse = (type: 'responses' | 'ending'): string => {
+    const messages = aiMessages[type];
+    const availableIndices = Array.from({ length: messages.length }, (_, i) => i)
+      .filter(i => !usedResponses.has(i));
+    
+    if (availableIndices.length === 0) {
+      // If all responses have been used, reset the used responses
+      setUsedResponses(new Set());
+      return messages[Math.floor(Math.random() * messages.length)];
+    }
+
+    const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+    setUsedResponses(prev => new Set([...prev, randomIndex]));
+    return messages[randomIndex];
+  };
+
   const handleNewMessage = (message: string) => {
     // Add user message
     setMessages(prev => [...prev, {
@@ -202,11 +229,11 @@ export default function Home() {
       let aiMessage: string;
       if (responseCount >= 3) {
         // Use ending message
-        aiMessage = aiMessages.ending[Math.floor(Math.random() * aiMessages.ending.length)];
+        aiMessage = getRandomUnusedResponse('ending');
         setIsEnded(true);
       } else {
         // Use response message
-        aiMessage = aiMessages.responses[Math.floor(Math.random() * aiMessages.responses.length)];
+        aiMessage = getRandomUnusedResponse('responses');
       }
 
       setMessages(prev => {
@@ -235,10 +262,13 @@ export default function Home() {
       body: welcomeMessage,
       isGPT: true,
       isUser: false,
-      displayText: welcomeMessage
+      isTyping: true,
+      displayText: ''
     }]);
+    typeMessage(welcomeMessage, 0);
     setResponseCount(0);
     setIsEnded(false);
+    setUsedResponses(new Set());
   };
 
   return (

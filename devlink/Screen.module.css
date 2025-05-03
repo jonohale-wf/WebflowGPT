@@ -117,9 +117,9 @@
   right: 0%;
   bottom: 0%;
 
-  background-image: linear-gradient(207deg, hsla(37, 0.00%, 28.67%, 0.07), hsla(243.87096774193546, 0.00%, 100.00%, 1.00) 33%, hsla(243.52941176470586, 0.00%, 100.00%, 1.00) 38%, hsla(244.91803278688525, 19.36%, 21.22%, 1.00) 43%, hsla(245, 100.00%, 0.00%, 0.00));
+  background-image: linear-gradient(207deg, hsla(37, 0.22%, 38.58%, 0.07), hsla(243.87096774193546, 0.00%, 100.00%, 1.00) 33%, hsla(243.52941176470586, 0.00%, 100.00%, 1.00) 38%, hsla(244.91803278688525, 19.36%, 21.22%, 1.00) 43%, hsla(245, 100.00%, 0.00%, 0.00));
 
-  opacity: 0.21;
+  opacity: 0.15;
   pointer-events: none;
 
   mix-blend-mode: screen;
@@ -153,7 +153,7 @@
   background-image: linear-gradient(185deg, hsla(0, 0.00%, 100.00%, 0.24), white);
 
   box-shadow: 0 2px 16px 20px hsla(0, 0.00%, 100.00%, 0.31);
-  opacity: 0.13;
+  opacity: 0.06;
 
   transform: translate(40px, -144px) rotate(38deg);
 

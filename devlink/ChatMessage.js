@@ -37,7 +37,12 @@ export function ChatMessage({
             className={_utils.cx(_styles, "message-body")}
             tag="div"
           >
-            <_Builtin.Block tag="div">{messageBody}</_Builtin.Block>
+            <_Builtin.Block
+              className={_utils.cx(_styles, "text-block")}
+              tag="div"
+            >
+              {messageBody}
+            </_Builtin.Block>
           </_Builtin.Block>
           <_Builtin.Block
             className={_utils.cx(_styles, "message-sender")}

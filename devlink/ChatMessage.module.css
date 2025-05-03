@@ -24,6 +24,7 @@
 }
 
 .message-sender {
+  flex: 0 0 auto;
   font-style: italic;
   font-variation-settings: "wdth" 100, "wght" 200;
   text-shadow: 0 1px 7px hsla(132, 83.67%, 49.73%, 0.51);
@@ -45,4 +46,8 @@
   background-color: hsla(132, 83.67%, 49.73%, 0.74);
 
   color: var(--c64-c4fb094f);
+}
+
+.text-block {
+  text-shadow: 0 1px 5px rgba(0,0,0,0.2), 0 0 8px hsla(132, 52.36%, 83.21%, 1.00);
 }
